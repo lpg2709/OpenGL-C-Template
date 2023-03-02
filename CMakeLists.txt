@@ -1,15 +1,23 @@
 cmake_minimum_required(VERSION 3.0)
 project(TemplateOpenGL)
 
-set(GLFW_FOLDER src/Vendor/glfw-3.3.8)
-set(CGLM_FOLDER src/Vendor/cgl-0.8.9)
+set(CGLM_FOLDER src/Vendor/cglm-0.8.9)
 set(GLAD_FOLDER src/Vendor/glad-5bf3eda)
+set(GLEW_FOLDER src/Vendor/glfw-3.3.8)
+set(GLFW_FOLDER src/Vendor/glfw-3.3.8)
+set(LPG3D_FOLDER src/Vendor/lpg3dmath)
 set(STB_FOLDER src/Vendor/stb-5736b15)
 
 option(GLFW_BUILD_DOCS OFF)
 option(GLFW_BUILD_EXAMPLES OFF)
 option(GLFW_BUILD_TESTS OFF)
 add_subdirectory(${GLFW_FOLDER})
+
+option(CGLM_SHARED "Shared build" OFF)
+option(CGLM_STATIC "Static build" ON)
+option(CGLM_USE_C99 "" ON) # C11
+option(CGLM_USE_TEST "Enable Tests" OFF) # for make check - make test
+add_subdirectory(${CGLM_FOLDER})
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -21,9 +29,10 @@ else()
 endif()
 
 include_directories(src/Headers/
+					${lpg3dmath}
 	                ${GLAD_FOLDER}/include/
 					${GLFW_FOLDER}/include/
-					${CGLM_FOLDER}/include/cglm/
+					${CGLM_FOLDER}/include/
 					${STB_FOLDER})
 
 file(GLOB VENDORS_SOURCES ${GLAD_FOLDER}/src/glad.c)
