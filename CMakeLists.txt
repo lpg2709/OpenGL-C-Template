@@ -3,7 +3,7 @@ project(TemplateOpenGL)
 
 set(CGLM_FOLDER src/Vendor/cglm-0.8.9)
 set(GLAD_FOLDER src/Vendor/glad-5bf3eda)
-set(GLEW_FOLDER src/Vendor/glfw-3.3.8)
+# set(GLEW_FOLDER src/Vendor/glfw-3.3.8)
 set(GLFW_FOLDER src/Vendor/glfw-3.3.8)
 set(LPG3D_FOLDER src/Vendor/lpg3dmath)
 set(STB_FOLDER src/Vendor/stb-5736b15)
@@ -31,6 +31,7 @@ endif()
 include_directories(src/Headers/
 					${lpg3dmath}
 	                ${GLAD_FOLDER}/include/
+					# ${GLEW_FOLDER}/include/
 					${GLFW_FOLDER}/include/
 					${CGLM_FOLDER}/include/
 					${STB_FOLDER})
