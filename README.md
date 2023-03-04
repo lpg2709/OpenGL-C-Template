@@ -1,4 +1,4 @@
-# OpenGL Template Project
+# OpenGL C Template
 
 This is my person configuration for develop OpenGL applications in C.
 
