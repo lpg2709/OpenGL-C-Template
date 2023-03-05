@@ -3,7 +3,7 @@ project(TemplateOpenGL)
 
 set(CGLM_FOLDER src/Vendor/cglm-0.8.9)
 set(GLAD_FOLDER src/Vendor/glad-5bf3eda)
-# set(GLEW_FOLDER src/Vendor/glfw-3.3.8)
+set(GLEW_FOLDER src/Vendor/glew-cmake-2.2.0)
 set(GLFW_FOLDER src/Vendor/glfw-3.3.8)
 set(LPG3D_FOLDER src/Vendor/lpg3dmath)
 set(STB_FOLDER src/Vendor/stb-5736b15)
@@ -18,6 +18,9 @@ option(CGLM_STATIC "Static build" ON)
 option(CGLM_USE_C99 "" ON) # C11
 option(CGLM_USE_TEST "Enable Tests" OFF) # for make check - make test
 add_subdirectory(${CGLM_FOLDER})
+
+add_definitions(-DGLEW_STATIC)
+add_subdirectory(${GLEW_FOLDER} ${CMAKE_CURRENT_BINARY_DIR}/vendor/glew-cmake-2.2.0)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
@@ -59,7 +62,7 @@ add_definitions(-DGLFW_INCLUDE_NONE
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS}
                                ${PROJECT_SHADERS} ${PROJECT_CONFIGS}
                                ${VENDORS_SOURCES})
-target_link_libraries(${PROJECT_NAME} glfw
+target_link_libraries(${PROJECT_NAME} glfw libglew_static
                       ${GLFW_LIBRARIES} ${GLAD_LIBRARIES})
 set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME})
