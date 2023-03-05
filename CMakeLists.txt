@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(TemplateOpenGL)
+project(opengl-c-template)
 
 set(CGLM_FOLDER src/Vendor/cglm-0.8.9)
 set(GLAD_FOLDER src/Vendor/glad-5bf3eda)
