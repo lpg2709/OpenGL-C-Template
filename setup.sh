@@ -4,6 +4,9 @@ _usage(){
 cat <<- EOF
 Usage: ./setup.sh PROJECT_NAME
 
+OPTION:
+  init   This use the PROJECT_NAME as the folder name
+
 EOF
 }
 
@@ -37,7 +40,10 @@ case $1 in
 		_usage
 		;;
 	*)
-		NAME=$(echo "PROJETO BOLADO" | sed -e 's/\(.*\)/\L\1/' | sed -e 's/ /-/g')
+		if [[ $1 == "init" ]]; then
+			NAME=${PWD##*/}
+		fi
+		NAME=$(echo $NAME | sed -e 's/\(.*\)/\L\1/' | sed -e 's/ /-/g')
 		echo -e "\033[44mChage project name to: $NAME\033[0m"
 		_setup "$NAME"
 		echo -e "\033[44mFinished; Rememder to add a LICENCE to your project!\033[0m"
