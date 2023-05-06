@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
 project(opengl-c-template)
 
-set(CGLM_FOLDER src/Vendor/cglm-0.8.9)
-set(GLAD_FOLDER src/Vendor/glad-5bf3eda)
-set(GLEW_FOLDER src/Vendor/glew-cmake-2.2.0)
-set(GLFW_FOLDER src/Vendor/glfw-3.3.8)
-set(LPG3D_FOLDER src/Vendor/lpg3dmath)
-set(STB_FOLDER src/Vendor/stb-5736b15)
+set(CGLM_FOLDER src/vendor/cglm-0.8.9)
+set(GLAD_FOLDER src/vendor/glad-5bf3eda)
+set(GLEW_FOLDER src/vendor/glew-cmake-2.2.0)
+set(GLFW_FOLDER src/vendor/glfw-3.3.8)
+set(LPG3D_FOLDER src/vendor/lpg3dmath)
+set(STB_FOLDER src/vendor/stb-5736b15)
 
 option(GLFW_BUILD_DOCS OFF)
 option(GLFW_BUILD_EXAMPLES OFF)
@@ -31,7 +31,7 @@ else()
     endif()
 endif()
 
-include_directories(src/Headers/
+include_directories(src/headers/
 					${lpg3dmath}
 	                ${GLAD_FOLDER}/include/
 					# ${GLEW_FOLDER}/include/
@@ -40,22 +40,22 @@ include_directories(src/Headers/
 					${STB_FOLDER})
 
 file(GLOB VENDORS_SOURCES ${GLAD_FOLDER}/src/glad.c)
-file(GLOB PROJECT_HEADERS src/Headers/*.h)
-file(GLOB PROJECT_SOURCES src/Sources/*.c)
-file(GLOB PROJECT_SHADERS src/Shaders/*.comp
-                          src/Shaders/*.frag
-                          src/Shaders/*.geom
-                          src/Shaders/*.vert)
+file(GLOB PROJECT_HEADERS src/headers/*.h)
+file(GLOB PROJECT_SOURCES src/sources/*.c)
+file(GLOB PROJECT_SHADERS src/shaders/*.comp
+                          src/shaders/*.frag
+                          src/shaders/*.geom
+                          src/shaders/*.vert)
 file(GLOB PROJECT_CONFIGS CMakeLists.txt
                           Readme.md
                          .gitattributes
                          .gitignore
                          .gitmodules)
 
-source_group("Headers" FILES ${PROJECT_HEADERS})
-source_group("Shaders" FILES ${PROJECT_SHADERS})
-source_group("Sources" FILES ${PROJECT_SOURCES})
-source_group("Vendors" FILES ${VENDORS_SOURCES})
+source_group("headers" FILES ${PROJECT_HEADERS})
+source_group("shaders" FILES ${PROJECT_SHADERS})
+source_group("sources" FILES ${PROJECT_SOURCES})
+source_group("vendors" FILES ${VENDORS_SOURCES})
 
 add_definitions(-DGLFW_INCLUDE_NONE
                 -DPROJECT_SOURCE_DIR=\"${PROJECT_SOURCE_DIR}\")
@@ -69,5 +69,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 add_custom_command(
     TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/src/Shaders $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/src/shaders $<TARGET_FILE_DIR:${PROJECT_NAME}>
     DEPENDS ${PROJECT_SHADERS})

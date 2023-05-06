@@ -17,7 +17,7 @@ _setup() {
 	sed -i -e "s/$OLD_NAME/$1/g" ./CMakeLists.txt
 
 	echo "Change main.c"
-	sed -i -e "s/$OLD_NAME/$1/g" ./src/Sources/main.c
+	sed -i -e "s/$OLD_NAME/$1/g" ./src/sources/main.c
 
 	echo "Change README.md"
 	sed -i -e "s/$OLD_NAME/$1/g" ./README.md
