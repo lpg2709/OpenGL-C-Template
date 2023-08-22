@@ -42,6 +42,8 @@ case $1 in
 	*)
 		if [[ $1 == "init" ]]; then
 			NAME=${PWD##*/}
+		else 
+			NAME=$1
 		fi
 		NAME=$(echo $NAME | sed -e 's/\(.*\)/\L\1/' | sed -e 's/ /-/g')
 		echo -e "\033[44mChage project name to: $NAME\033[0m"
