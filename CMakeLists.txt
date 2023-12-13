@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(opengl-c-template)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(CGLM_FOLDER src/vendor/cglm-0.8.9)
 set(GLAD_FOLDER src/vendor/glad-5bf3eda)
 set(GLEW_FOLDER src/vendor/glew-cmake-2.2.0)
@@ -31,17 +33,17 @@ else()
     endif()
 endif()
 
-include_directories(src/headers/
+include_directories(src/
 					${lpg3dmath}
-	                ${GLAD_FOLDER}/include/
+					${GLAD_FOLDER}/include/
 					# ${GLEW_FOLDER}/include/
 					${GLFW_FOLDER}/include/
 					${CGLM_FOLDER}/include/
 					${STB_FOLDER})
 
 file(GLOB VENDORS_SOURCES ${GLAD_FOLDER}/src/glad.c)
-file(GLOB PROJECT_HEADERS src/headers/*.h)
-file(GLOB PROJECT_SOURCES src/sources/*.c)
+file(GLOB PROJECT_HEADERS src/*.h)
+file(GLOB PROJECT_SOURCES src/*.c)
 file(GLOB PROJECT_SHADERS src/shaders/*.comp
                           src/shaders/*.frag
                           src/shaders/*.geom

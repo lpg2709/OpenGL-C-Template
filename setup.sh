@@ -17,7 +17,7 @@ _setup() {
 	sed -i -e "s/$OLD_NAME/$1/g" ./CMakeLists.txt
 
 	echo "Change main.c"
-	sed -i -e "s/$OLD_NAME/$1/g" ./src/sources/main.c
+	sed -i -e "s/$OLD_NAME/$1/g" ./src/main.c
 
 	echo "Change README.md"
 	sed -i -e "s/$OLD_NAME/$1/g" ./README.md
@@ -42,7 +42,7 @@ case $1 in
 	*)
 		if [[ $1 == "init" ]]; then
 			NAME=${PWD##*/}
-		else 
+		else
 			NAME=$1
 		fi
 		NAME=$(echo $NAME | sed -e 's/\(.*\)/\L\1/' | sed -e 's/ /-/g')
