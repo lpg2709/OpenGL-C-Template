@@ -6,8 +6,8 @@
 #include <GLFW/glfw3.h>
 
 int G_EXIT_STATUS = 0;
-int mWidth 800
-int mHeight 600
+int mWidth = 800;
+int mHeight = 600;
 
 void error_callback(int code, const char* description) {
 	fprintf(stderr, "[GLFW ERROR] (%d): %s\n", code, description);
@@ -41,7 +41,7 @@ int main(int argc, char * argv[]) {
         goto end_glfw;
     }
 
-    glfwSetKeyCallback(window, key_callback);
+    glfwSetKeyCallback(mWindow, key_callback);
 
     // Create Context and Load OpenGL Functions
     glfwMakeContextCurrent(mWindow);
